@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <title>Ineffable</title>
+  </head>
+  <body>
+    <canvas id="bg"></canvas>
+    <script type="module">
+      import * as THREE from 'C:/Users/fisra/ineffable/node_modules/three/build/three.module.js';
+      import {OrbitControls} from "C:/Users/fisra/ineffable/node_modules/three/examples/jsm/controls/OrbitControls.js"
+        let scene, camera, renderer, bubble, earth, mercury, venus, mars, jupiter, saturn, uranus, neptune, skyBox;
+        function init() {
+          //set up the scene
+          scene = new THREE.Scene;
+
+          camera = new THREE.PerspectiveCamera(55, window.innerWidth/window.innerHeight, 45, 30000);
+          camera.position.set(0, 0, -2650);
+          camera.updateProjectionMatrix(); 
+
+          renderer = new THREE.WebGLRenderer({antialias: true, canvas: document.querySelector('#bg')});
+          renderer.setPixelRatio(window.devicePixelRatio);
+          renderer.setSize(window.innerWidth, window.innerHeight); 
+          document.body.appendChild(renderer.domElement);
+
+          //set up controls
+          let controls = new OrbitControls(camera, renderer.domElement);
+          controls.addEventListener('change', renderer);
+          controls.minDistance = 500;
+          controls.maxDistance = 2650;
+          
+          //skybox
+          let skyBoxMaterials = [];
+          let skyBox_ft = new THREE.TextureLoader().load('corona_ft.png');
+          let skyBox_bk = new THREE.TextureLoader().load('corona_bk.png');
+          let skyBox_up = new THREE.TextureLoader().load('corona_up.png');
+          let skyBox_dn = new THREE.TextureLoader().load('corona_dn.png');
+          let skyBox_rt = new THREE.TextureLoader().load('corona_rt.png');
+          let skyBox_lt = new THREE.TextureLoader().load('corona_lf.png');
+
+          skyBoxMaterials.push(new THREE.MeshBasicMaterial({map:skyBox_ft}));
+          skyBoxMaterials.push(new THREE.MeshBasicMaterial({map:skyBox_bk}));
+          skyBoxMaterials.push(new THREE.MeshBasicMaterial({map:skyBox_up}));
+          skyBoxMaterials.push(new THREE.MeshBasicMaterial({map:skyBox_dn}));
+          skyBoxMaterials.push(new THREE.MeshBasicMaterial({map:skyBox_rt}));
+          skyBoxMaterials.push(new THREE.MeshBasicMaterial({map:skyBox_lt}));
+
+          for (let i=0; i<6; i++) {
+            skyBoxMaterials[i].side = THREE.BackSide;
+          }
+
+          let skyBoxGeo = new THREE.BoxGeometry(10000, 10000, 10000); 
+          skyBox = new THREE.Mesh(skyBoxGeo, skyBoxMaterials);
+          scene.add(skyBox);
+          
+          // earth
+          const earthTexture = new THREE.TextureLoader().load('earth.jpg');
+          let earthGeo = new THREE.SphereGeometry(75, 100, 100);
+          let earthMaterial = new THREE.MeshBasicMaterial({map: earthTexture})
+          earth = new THREE.Mesh(earthGeo, earthMaterial); 
+          scene.add(earth);
+          
+          // bubble
+          let bubblebg = new THREE.TextureLoader().load('bubblebg.jpg');
+          let bubbleGeo = new THREE.SphereGeometry(275, 40, 40); 
+          let bubbleMaterial = new THREE.MeshBasicMaterial({map: bubblebg, side: THREE.BackSide});
+          bubble = new THREE.Mesh(bubbleGeo, bubbleMaterial); 
+          scene.add(bubble);
+
+          //mercury
+          const mercuryTexture = new THREE.TextureLoader().load('mercury.jpg');
+          let mercuryGeo = new THREE.SphereGeometry(25, 100, 100);
+          let mercuryMaterial = new THREE.MeshBasicMaterial({map: mercuryTexture});
+          mercury = new THREE.Mesh(mercuryGeo, mercuryMaterial); 
+          scene.add(mercury);
+          mercury.position.set(350, 40, -100);
+
+          //venus
+          const venusTexture = new THREE.TextureLoader().load('venus.jpg');
+          let venusGeo = new THREE.SphereGeometry(71, 100, 100);
+          let venusMaterial = new THREE.MeshBasicMaterial({map: venusTexture});
+          venus = new THREE.Mesh(venusGeo, venusMaterial); 
+          scene.add(venus);
+          venus.position.set(550, 40, -100);
+
+          //mars
+          const marsTexture = new THREE.TextureLoader().load('mars.jpg');
+          let marsGeo = new THREE.SphereGeometry(39.9, 100, 100);
+          let marsMaterial = new THREE.MeshBasicMaterial({map: marsTexture});
+          mars = new THREE.Mesh(marsGeo, marsMaterial); 
+          scene.add(mars);
+          mars.position.set(850, 40, -100);
+
+          //jupiter
+          const jupiterTexture = new THREE.TextureLoader().load('jupiter.jpg');
+          let jupiterGeo = new THREE.SphereGeometry(120, 100, 100);
+          let jupiterMaterial = new THREE.MeshBasicMaterial({map: jupiterTexture});
+          jupiter = new THREE.Mesh(jupiterGeo, jupiterMaterial); 
+          scene.add(jupiter);
+          jupiter.position.set(1150, 40, -100);
+
+          //saturn
+          const saturnTexture = new THREE.TextureLoader().load('saturn.jpg');
+          let saturnGeo = new THREE.SphereGeometry(90, 100, 100);
+          let saturnMaterial = new THREE.MeshBasicMaterial({map: saturnTexture});
+          saturn = new THREE.Mesh(saturnGeo, saturnMaterial); 
+          scene.add(saturn);
+          saturn.position.set(1470, 40, -100);
+
+          //uranus
+          const uranusTexture = new THREE.TextureLoader().load('uranus.jpg');
+          let uranusGeo = new THREE.SphereGeometry(78, 100, 100);
+          let uranusMaterial = new THREE.MeshBasicMaterial({map: uranusTexture});
+          uranus = new THREE.Mesh(uranusGeo, uranusMaterial); 
+          scene.add(uranus);
+          uranus.position.set(1750, 40, -100);
+
+          //neptune
+          const neptuneTexture = new THREE.TextureLoader().load('neptune.jpg');
+          let neptuneGeo = new THREE.SphereGeometry(78, 100, 100);
+          let neptuneMaterial = new THREE.MeshBasicMaterial({map: neptuneTexture});
+          neptune = new THREE.Mesh(neptuneGeo, neptuneMaterial); 
+          scene.add(neptune);
+          neptune.position.set(2050, 40, -100);
+        
+          animate(); 
+        }
+        
+        //planets and skybox rotate
+        function rotate() {
+          skyBox.rotation.y += 0.003;
+          earth.rotation.y += 0.01;
+          mercury.rotation.y += 0.01;
+          venus.rotation.y += 0.01;
+          mars.rotation.y += 0.01;
+          jupiter.rotation.y += 0.01;
+          saturn.rotation.y += 0.01;
+          uranus.rotation.y += 0.01;
+          neptune.rotation.y += 0.01;
+
+        }
+
+        //orbit radius of each planet
+        let mercuryOrbitRadius = 350;
+        let venusOrbitRadius = 550;
+        let marsOrbitRadius = 850;
+        let jupiterOrbitRadius = 1150;
+        let saturnOrbitRadius = 1470;
+        let uranusOrbitRadius = 1750;
+        let neptuneOrbitRadius = 2050;
+
+        //speed
+        let mercuryDate;
+        let venusDate;
+        let marsDate;
+        let jupiterDate;
+        let saturnDate;
+        let uranusDate;
+        let neptuneDate;
+
+        //planets revolve around earth
+        function revolve() {
+          mercuryDate = Date.now() * 0.0044;   
+          venusDate = Date.now() * 0.0008;
+          marsDate = Date.now() * 0.0003;
+          jupiterDate = Date.now() * 0.0001;
+          saturnDate = Date.now() * 0.00009;
+          uranusDate = Date.now() * 0.00007;
+          neptuneDate = Date.now() * 0.00005;
+          mercury.position.set(Math.cos(mercuryDate) * mercuryOrbitRadius, 0, Math.sin(mercuryDate) * mercuryOrbitRadius);
+          venus.position.set(Math.cos(venusDate) * venusOrbitRadius, 0, Math.sin(venusDate) * venusOrbitRadius);
+          mars.position.set(Math.cos(marsDate) * marsOrbitRadius, 0, Math.sin(marsDate) * marsOrbitRadius);
+          jupiter.position.set(Math.cos(jupiterDate) * jupiterOrbitRadius, 0, Math.sin(jupiterDate) * jupiterOrbitRadius);
+          saturn.position.set(Math.cos(saturnDate) * saturnOrbitRadius, 0, Math.sin(saturnDate) * saturnOrbitRadius);
+          uranus.position.set(Math.cos(uranusDate) * uranusOrbitRadius, 0, Math.sin(uranusDate) * uranusOrbitRadius);
+          neptune.position.set(Math.cos(neptuneDate) * neptuneOrbitRadius, 0, Math.sin(neptuneDate) * neptuneOrbitRadius);
+        }
+             
+        //animation
+        function animate() {
+          
+          requestAnimationFrame(animate);
+          rotate(); 
+          revolve();
+          renderer.render(scene, camera);
+          controls.update();       
+        }
+
+        init();
+
+    </script>
+  </body>
+</html>
+
