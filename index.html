@@ -33,12 +33,12 @@
           
           //skybox
           let skyBoxMaterials = [];
-          let skyBox_ft = new THREE.TextureLoader().load('corona_ft.png');
-          let skyBox_bk = new THREE.TextureLoader().load('corona_bk.png');
-          let skyBox_up = new THREE.TextureLoader().load('corona_up.png');
-          let skyBox_dn = new THREE.TextureLoader().load('corona_dn.png');
-          let skyBox_rt = new THREE.TextureLoader().load('corona_rt.png');
-          let skyBox_lt = new THREE.TextureLoader().load('corona_lf.png');
+          let skyBox_ft = new THREE.TextureLoader().load('images/corona_ft.png');
+          let skyBox_bk = new THREE.TextureLoader().load('images/corona_bk.png');
+          let skyBox_up = new THREE.TextureLoader().load('images/corona_up.png');
+          let skyBox_dn = new THREE.TextureLoader().load('images/corona_dn.png');
+          let skyBox_rt = new THREE.TextureLoader().load('images/corona_rt.png');
+          let skyBox_lt = new THREE.TextureLoader().load('images/corona_lf.png');
 
           skyBoxMaterials.push(new THREE.MeshBasicMaterial({map:skyBox_ft}));
           skyBoxMaterials.push(new THREE.MeshBasicMaterial({map:skyBox_bk}));
@@ -56,21 +56,21 @@
           scene.add(skyBox);
           
           // earth
-          const earthTexture = new THREE.TextureLoader().load('earth.jpg');
+          const earthTexture = new THREE.TextureLoader().load('images/earth.jpg');
           let earthGeo = new THREE.SphereGeometry(75, 100, 100);
           let earthMaterial = new THREE.MeshBasicMaterial({map: earthTexture})
           earth = new THREE.Mesh(earthGeo, earthMaterial); 
           scene.add(earth);
           
           // bubble
-          let bubblebg = new THREE.TextureLoader().load('bubblebg.jpg');
+          let bubblebg = new THREE.TextureLoader().load('images/bubblebg.jpg');
           let bubbleGeo = new THREE.SphereGeometry(275, 40, 40); 
           let bubbleMaterial = new THREE.MeshBasicMaterial({map: bubblebg, side: THREE.BackSide});
           bubble = new THREE.Mesh(bubbleGeo, bubbleMaterial); 
           scene.add(bubble);
 
           //mercury
-          const mercuryTexture = new THREE.TextureLoader().load('mercury.jpg');
+          const mercuryTexture = new THREE.TextureLoader().load('images/mercury.jpg');
           let mercuryGeo = new THREE.SphereGeometry(25, 100, 100);
           let mercuryMaterial = new THREE.MeshBasicMaterial({map: mercuryTexture});
           mercury = new THREE.Mesh(mercuryGeo, mercuryMaterial); 
@@ -78,7 +78,7 @@
           mercury.position.set(350, 40, -100);
 
           //venus
-          const venusTexture = new THREE.TextureLoader().load('venus.jpg');
+          const venusTexture = new THREE.TextureLoader().load('images/venus.jpg');
           let venusGeo = new THREE.SphereGeometry(71, 100, 100);
           let venusMaterial = new THREE.MeshBasicMaterial({map: venusTexture});
           venus = new THREE.Mesh(venusGeo, venusMaterial); 
@@ -86,7 +86,7 @@
           venus.position.set(550, 40, -100);
 
           //mars
-          const marsTexture = new THREE.TextureLoader().load('mars.jpg');
+          const marsTexture = new THREE.TextureLoader().load('images/mars.jpg');
           let marsGeo = new THREE.SphereGeometry(39.9, 100, 100);
           let marsMaterial = new THREE.MeshBasicMaterial({map: marsTexture});
           mars = new THREE.Mesh(marsGeo, marsMaterial); 
@@ -94,7 +94,7 @@
           mars.position.set(850, 40, -100);
 
           //jupiter
-          const jupiterTexture = new THREE.TextureLoader().load('jupiter.jpg');
+          const jupiterTexture = new THREE.TextureLoader().load('images/jupiter.jpg');
           let jupiterGeo = new THREE.SphereGeometry(120, 100, 100);
           let jupiterMaterial = new THREE.MeshBasicMaterial({map: jupiterTexture});
           jupiter = new THREE.Mesh(jupiterGeo, jupiterMaterial); 
@@ -102,7 +102,7 @@
           jupiter.position.set(1150, 40, -100);
 
           //saturn
-          const saturnTexture = new THREE.TextureLoader().load('saturn.jpg');
+          const saturnTexture = new THREE.TextureLoader().load('images/saturn.jpg');
           let saturnGeo = new THREE.SphereGeometry(90, 100, 100);
           let saturnMaterial = new THREE.MeshBasicMaterial({map: saturnTexture});
           saturn = new THREE.Mesh(saturnGeo, saturnMaterial); 
@@ -110,7 +110,7 @@
           saturn.position.set(1470, 40, -100);
 
           //uranus
-          const uranusTexture = new THREE.TextureLoader().load('uranus.jpg');
+          const uranusTexture = new THREE.TextureLoader().load('images/uranus.jpg');
           let uranusGeo = new THREE.SphereGeometry(78, 100, 100);
           let uranusMaterial = new THREE.MeshBasicMaterial({map: uranusTexture});
           uranus = new THREE.Mesh(uranusGeo, uranusMaterial); 
@@ -118,7 +118,7 @@
           uranus.position.set(1750, 40, -100);
 
           //neptune
-          const neptuneTexture = new THREE.TextureLoader().load('neptune.jpg');
+          const neptuneTexture = new THREE.TextureLoader().load('images/neptune.jpg');
           let neptuneGeo = new THREE.SphereGeometry(78, 100, 100);
           let neptuneMaterial = new THREE.MeshBasicMaterial({map: neptuneTexture});
           neptune = new THREE.Mesh(neptuneGeo, neptuneMaterial); 
