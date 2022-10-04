@@ -9,8 +9,8 @@
   <body>
     <canvas id="bg"></canvas>
     <script type="module">
-      import * as THREE from 'C:/Users/fisra/ineffable/node_modules/three/build/three.module.js';
-      import {OrbitControls} from "C:/Users/fisra/ineffable/node_modules/three/examples/jsm/controls/OrbitControls.js"
+      import * as THREE from 'js/three.module.js';
+      import {OrbitControls} from "js/OrbitControls.js"
         let scene, camera, renderer, bubble, earth, mercury, venus, mars, jupiter, saturn, uranus, neptune, skyBox;
         function init() {
           //set up the scene
@@ -162,13 +162,13 @@
 
         //planets revolve around earth
         function revolve() {
-          mercuryDate = Date.now() * 0.0044;   
+          mercuryDate = Date.now() * 0.004;   
           venusDate = Date.now() * 0.0008;
           marsDate = Date.now() * 0.0003;
           jupiterDate = Date.now() * 0.0001;
-          saturnDate = Date.now() * 0.00009;
-          uranusDate = Date.now() * 0.00007;
-          neptuneDate = Date.now() * 0.00005;
+          saturnDate = Date.now() * 0.000092;
+          uranusDate = Date.now() * 0.000071;
+          neptuneDate = Date.now() * 0.000052;
           mercury.position.set(Math.cos(mercuryDate) * mercuryOrbitRadius, 0, Math.sin(mercuryDate) * mercuryOrbitRadius);
           venus.position.set(Math.cos(venusDate) * venusOrbitRadius, 0, Math.sin(venusDate) * venusOrbitRadius);
           mars.position.set(Math.cos(marsDate) * marsOrbitRadius, 0, Math.sin(marsDate) * marsOrbitRadius);
